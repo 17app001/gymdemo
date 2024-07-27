@@ -4,50 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>首頁</title>
-    <!-- . 代表class # 代表id -->
-    <style>
-        body {
-            background-color: lightblue;
-            font-family: '標楷體', 'Arial Narrow', Arial, sans-serif;
-            text-align: center;
-        }
-
-        .banner {
-            width: 200px;
-            display: inline-block;
-            background-color: rgb(165, 148, 206);
-            color: white;
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-            font-size: 24px;
-            margin: 12px;
-            padding: 6px 12px;
-        }
-
-        #title {
-            color: blueviolet;
-            background-color: palegoldenrod;
-            font-size: 48px;
-            margin: 2px 12px 24px 32px;
-            margin-top: 64px;
-            padding: 12px;
-            text-align: center;
-        }
-
-        .tentip {
-            background-color: bisque;
-            text-align: left;
-            padding: 12px;
-            border: 1px black solid;
-        }
-    </style>
-
-    <!-- 
-css練習將健身10個好處 加入div class="tentip" 
-將文字置左
-背景色改變
--->
+    <link rel="stylesheet" href="res/style.css">
 </head>
-<!-- 內容顯示區 -->
 
 <body>
     <div id="title">我愛健身網站</div>
@@ -57,7 +15,9 @@ css練習將健身10個好處 加入div class="tentip"
             </b>
         <p>除了塑造好身材，透過健身可以刺激我們身體的肌肉，再搭配飲食的控制，這能大大幫助我們的肌肉量增加，以及讓我們的肌肉更加的結實。</p>
         <em style="background-color: aqua;">如果你對健身仍然保持著懷疑的態度，那你大可以去看看你喜歡的健身老戲骨幹，他們是如何做到年過50/60歲，依舊在
-            舞臺上或者是電影螢幕上綻放光彩。</em><u><b>答案就是堅持運動健身!</b></u></p>
+            舞臺上或者是電影螢幕上綻放光彩。</em><u><b>
+                <span class="slogan">答案就是堅持運動健身!</span>
+            </b></u></p>
     </div>
     <hr>
     <!-- css 練習將所有的h2標籤加上style樣式設計(color & backgroud-color)-->
@@ -106,7 +66,7 @@ css練習將健身10個好處 加入div class="tentip"
     <img src="images/pic-3.jpg" alt="" width="32%">
 
     <div class="banner">一天所需卡路里</div>
-    <table border="1">
+    <table border="1" id="bmi-table">
         <thead>
             <tr>
                 <th>每天活動量</th>
@@ -160,7 +120,8 @@ css練習將健身10個好處 加入div class="tentip"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
-    <video width="100%" src="video/sample_video (720p).mp4" controls></video>
+    <!-- ctrl+/ -->
+    <!-- <video width="100%" src="video/sample_video (720p).mp4" controls></video> -->
 
 
 
