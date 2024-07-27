@@ -8,3 +8,11 @@
 - 對應的href跟src屬性
 - 列表的呈現方式(ul/ol/li)
 - 表格的組合樣式(table/thead/th/tr/tbody/td)
+
+
+## CSS
+- inline 影響單一區塊
+- head/style 影響整個網頁
+- class為.，id為#
+- div為區塊標籤
+- font-Size可以使用px or em(1em = 16px)
