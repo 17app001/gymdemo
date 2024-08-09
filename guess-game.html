@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #result {
+      margin: 12px auto;
+      padding: 48px;
+      text-align: center;
+      width: 200px;
+      background-color: rgb(249, 255, 241);
+      border-radius: 12px;
+      border: 2px black solid;
+    }
+
+    body {
+      background-color: beige;
+      padding: 0 0;
+      text-align: center;
+    }
+
+    .tips {
+      background-color: brown;
+      color: white;
+      padding: 6px;
+    }
+
+    input {
+      text-align: center;
+    }
+
+    #banner {
+      height: 200px;
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <img id="banner" src="images/1000_F_99387002_3v2yADt35iTJV78FIawZoFUmPmL3uDcn.jpg" alt="">
+
+  <h1>
+    猜數字挑戰賽!
+  </h1>
+  <p>
+    <span class="tips">遊戲說明:</span><br><br>
+    請猜1~50之間的數字，遊戲共有五次機會。
+  </p>
+  <label for="number">請猜一個數字</label>
+  <input type="number" id="number" placeholder="1~50">
+  <button onclick="answer()">送出</button>
+  <p id="result">
+    前一次猜測結果
+  </p>
+
+  <button id="restart" disabled>開始遊戲</button>
+  <h3 id="guess-count"></h3>
+  <script>
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function answer() {
+      let number = numberEl.value;
+      console.log(number);
+      ++count;
+      if (count > 5) {
+        alert("請按重新開始");
+        return;
+      }
+
+      if (number == computer) {
+        resultEl.innerHTML = `${number} 猜對了!`;
+        document.querySelector("#guess-count").innerText = `共猜${count}次!`;
+      } else {
+        resultEl.innerHTML = `${number} 猜錯了!`;
+        document.querySelector("#guess-count").innerText = `猜錯${count}次!`;
+      }
+      if (count == 5) {
+        resultEl.innerHTML = `遊戲結束<br>答案是:${computer}`;
+        restartEl.disabled = false;
+      }
+    }
+
+    let count = 0;
+    let computer = getRandomInt(1, 50);
+    console.log(computer);
+
+    const numberEl = document.querySelector("#number");
+    const buttonEl = document.querySelector("button");
+    const resultEl = document.querySelector("#result");
+    const restartEl = document.querySelector("#restart");
+    restartEl.addEventListener("click", () => {
+      restartEl.disabled = true;
+      alert("重新開始!");
+      count = 0;
+      computer = getRandomInt(1, 50);
+      console.log(computer);
+    });
+    let number = numberEl.value;
+    console.log(numberEl, buttonEl, number);
+  </script>
+</body>
+
+</html>

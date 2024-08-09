@@ -45,22 +45,46 @@
          * 計算BMI 
          * 使用document.write輸出姓名跟bmi
          */
-        let name = prompt("姓名");
-        let height = prompt("身高");
-        let weight = prompt("體重");
 
-        let bmi = weight / (height / 100) ** 2;
-        console.log(name, height, weight, bmi);
+        let total = 0;
+        let count = 0;
+        while (true) {
+            let name = prompt("姓名");
+            let height = prompt("身高");
+            let weight = prompt("體重");
+            if (height == "" || weight == "") {
+                alert("輸入不能為空!");
+            } else {
+                let bmi = weight / (height / 100) ** 2;
 
-        document.write(`<h1>${name}</h1>`);
-        document.write(`<li>身高:${height}</li>`);
-        document.write(`<li>體重:${weight}</li>`);
-        document.write(`<li>BMI:${bmi.toFixed(2)}</li>`);
+                if (isNaN(bmi)) {
+                    alert("輸入非數值不正確!");
+                } else {
+                    if (!isValid(height) || !isValid(weight)) {
+                        alert("輸入數值不正確!");
+                        continue;
+                    }
+                    total += bmi;
+                    console.log(name, height, weight, bmi);
+                    document.write(`<h1>${name}</h1>`);
+                    document.write(`<li>身高:${height}</li>`);
+                    document.write(`<li>體重:${weight}</li>`);
+                    document.write(`<li>BMI:${bmi.toFixed(2)}</li>`);
+                    count++;
+                }
+            }
 
-        //document.write("<br>" + name + " bmi:" + bmi.toFixed(2));
+            if (count >= 3) {
+                break;
+            }
 
+        };
 
+        document.write(`平均bmi:${(total / 3).toFixed(2)}`);
 
+        function isValid(value) {
+            return height > 0 && height < 300;
+        }
 
     </script>
 </body>
