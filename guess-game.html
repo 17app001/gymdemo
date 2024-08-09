@@ -58,8 +58,36 @@
   </p>
 
   <button id="restart" disabled>開始遊戲</button>
-  <h3 id="guess-count"></h3>
+  <h2 id="guess-count">
+    </h3>
+    <hr>
+    <h3 style="background-color: chocolate;color:white">遊戲紀錄
+  </h2>
+  <div id="game-records"></div>
   <script>
+
+    function saveGameRecord() {
+      let records = JSON.parse(localStorage.getItem('gameRecords')) || [];
+      records.push({
+        date: new Date().toLocaleString(),
+        attempts: count,
+        result: number == computer ? '猜對了' : '猜錯了',
+      });
+      localStorage.setItem('gameRecords', JSON.stringify(records));
+    }
+
+    function showGameRecords() {
+      let records = JSON.parse(localStorage.getItem('gameRecords')) || [];
+      let recordsEl = document.getElementById('game-records');
+      recordsEl.innerHTML = records.map(record => `
+    <div>
+      <strong>${record.date}</strong><br>
+      嘗試次數: ${record.attempts}<br>
+      結果: ${record.result}
+    </div>
+  `).join('<hr>');
+    }
+
 
     function getRandomInt(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -77,6 +105,9 @@
       if (number == computer) {
         resultEl.innerHTML = `${number} 猜對了!`;
         document.querySelector("#guess-count").innerText = `共猜${count}次!`;
+        restartEl.disabled = false;
+        saveGameRecord(); // 保存結果
+        showGameRecords();
       } else {
         resultEl.innerHTML = `${number} 猜錯了!`;
         document.querySelector("#guess-count").innerText = `猜錯${count}次!`;
@@ -84,6 +115,8 @@
       if (count == 5) {
         resultEl.innerHTML = `遊戲結束<br>答案是:${computer}`;
         restartEl.disabled = false;
+        saveGameRecord(); // 保存結果
+        showGameRecords();
       }
     }
 
@@ -101,6 +134,7 @@
       count = 0;
       computer = getRandomInt(1, 50);
       console.log(computer);
+      showGameRecords();
     });
     let number = numberEl.value;
     console.log(numberEl, buttonEl, number);
