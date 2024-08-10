@@ -47,9 +47,10 @@
          */
 
         // 輸入三次
-        //for i in range(3):
-        //for (let i = 0; i < 3; i++) 
+        //for (let i = 0; i < 3; i++)  
         let count = 0;
+        let total = 0;
+        // 使用while true+break
         while (true) {
             if (count == 3) {
                 break;
@@ -64,11 +65,16 @@
                 alert("輸入不能為空!");
             }
             else {
+                // not =>!
+                // 身高/體重  範圍 1~500 (包含1,500)，否則警告輸入數值不正確，不做計算
+                if (!isValid(height, 1, 300) || !isValid(weight, 1, 500)) {
+                    alert("輸入數值不正確");
+                    continue;
+                }
 
                 let bmi = weight / (height / 100) ** 2;
-
                 console.log(name, height, weight, bmi, count);
-
+                // 判斷是否是數值
                 if (isNaN(bmi)) {
                     alert("輸入不正確!");
                 } else {
@@ -77,13 +83,19 @@
                     document.write(`<li>體重:${weight}</li>`);
                     document.write(`<li>BMI:${bmi.toFixed(2)}</li>`);
                     count++;
+                    total += bmi;
                 }
             }
         }
-        //document.write("<br>" + name + " bmi:" + bmi.toFixed(2));
+
+        // 程式練習:輸出平均BMI
+        document.write(`<h1>平均BMI:${(total / count).toFixed(2)}</h1>`)
 
 
 
+        function isValid(value, start, end) {
+            return value >= start && value <= end;
+        }
 
     </script>
 </body>
